@@ -3,12 +3,17 @@ import Link from "next/link";
 export function Menu() {
   return (
     <ul>
-      <li><Link href="/">Home</Link></li>
+      <li>
+        <Link href="/"
+        >
+          Home
+        </Link>
+      </li>
       <li>
         <Link
           href="/about#scrollHere"
           prefetch={true}
-          /* scroll={false} */
+        /* scroll={false} */
         >
           About
         </Link>
