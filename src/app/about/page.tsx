@@ -1,3 +1,4 @@
+import ClientFetch from "@/components/client-fetch";
 import { Metadata } from "next"
 import dynamic from "next/dynamic"
 
@@ -24,6 +25,7 @@ export default function About() {
     <>
       <h1>About</h1>
       <Width />
+      <ClientFetch />
     </>
   )
 }
