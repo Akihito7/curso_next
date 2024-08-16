@@ -1,7 +1,7 @@
 import { cookies } from "next/headers";
 
-export async function POST(request: Request) {
 
+export async function POST(request: Request) {
   const { username, password } = await request.json();
 
   const response = await fetch("https://api.origamid.online/conta/login", {
@@ -15,11 +15,13 @@ export async function POST(request: Request) {
     })
   });
 
-  if (!response.ok) return Response.json({
-    status: "Error",
-    statusCode: '500',
-    message: "Error Internal Server"
-  });
+  if (!response.ok) {
+    return Response.json({
+      status: "Error",
+      statusCode: response.status,
+      message: "Failed to authenticate user"
+    }, { status: response.status });
+  }
 
   const { token } = await response.json();
 
@@ -32,7 +34,4 @@ export async function POST(request: Request) {
     token,
   })
 }
-
-
-
 

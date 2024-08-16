@@ -1,10 +1,6 @@
-import { cookies } from "next/headers"
-
-export async function POST() {
-
-  const token = cookies().get("token")?.value;
-
-  if (!token) return Response.json({
+export async function POST(request : Request) { 
+  const { token } = await request.json();
+if (!token) return Response.json({
     status: "Error",
     statusCode: '400',
     message: "Token inválido"
@@ -20,5 +16,5 @@ export async function POST() {
 
   return Response.json({
     account,
-  })
+  }) 
 }

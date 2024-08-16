@@ -38,6 +38,10 @@ export function Menu() {
       <li>
         <Link href="/actions">Ações</Link>
       </li>
+
+      <li>
+        <Link href="/login">Login</Link>
+      </li>
     </ul>
   )
 }
