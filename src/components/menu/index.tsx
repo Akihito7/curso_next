@@ -34,6 +34,10 @@ export function Menu() {
       <li>
         <Link href="/courses">Cursos</Link>
       </li>
+
+      <li>
+        <Link href="/actions">Ações</Link>
+      </li>
     </ul>
   )
 }
