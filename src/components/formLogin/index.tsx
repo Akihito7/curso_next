@@ -1,6 +1,8 @@
 'use client'
 import { useState } from "react"
 import { useRouter } from "next/navigation";
+import { login } from "@/app/actions/login";
+import { setCookies } from "@/app/actions/cookies";
 
 export function FormLogin() {
 
@@ -9,20 +11,23 @@ export function FormLogin() {
   const [password, setPassword] = useState<string>();
 
   async function handleLogin() {
-    const response = await fetch("http://localhost:3000/api/login", {
-      method: 'POST',
-      headers : {
-        'Content-Type' : "application/json"
-      },
-      body: JSON.stringify({
-        username,
-        password
-      })
+    
+    if(!username || !password) return;
+    const response = await login({
+      username,
+      password
     });
 
-    if (!response.ok) return alert("email e ou senha inválidos");
-    router.push("/account")
-  } 
+    if(!response.token) return alert(response.message);
+
+    setCookies("token", response.token, {
+      httpOnly : true,
+      secure : true
+    })
+
+    router.push("/")
+
+  }
 
   return (
     <div className="loginContainer">

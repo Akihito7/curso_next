@@ -1,15 +1,13 @@
-'use client'
-import { setCookies } from "./actions/set-cookie";
+import { GetCookies } from "@/components/getCookies";
+import { getCookies } from "./actions/cookies";
 
-export default function Home() {
-  function handleSetCookies(){
-    setCookies("secret", "12345")
-  };
-
+export default async function Home() {
+  const cookies = await getCookies("token"); 
   return (
     <main>
       <h1>Hello NextJS</h1>
-      <button onClick={handleSetCookies}>Definir cookies</button>
+      <GetCookies />
+      <p>{cookies?.value}</p>
     </main>
   );
 }
