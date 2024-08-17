@@ -5,16 +5,9 @@ import React, { useState } from 'react';
 import { useFormState, useFormStatus } from 'react-dom';
 
 export function AddProductForm() {
-  const [name, setName] = useState('');
-  const [price, setPrice] = useState('');
-  const [description, setDescription] = useState('');
-  const [stock, setStock] = useState('');
-  const [isAvailable, setIsAvailable] = useState(false);
   const [state, formAction] = useFormState(addProduct, {
     errors :[]
   })
-
-  console.log(state)
 
   return (
 
@@ -25,8 +18,6 @@ export function AddProductForm() {
           type="text"
           id="name"
           name='name'
-          value={name}
-          onChange={(e) => setName(e.target.value)}
         />
       </div>
       <div className="containerInput">
@@ -35,8 +26,7 @@ export function AddProductForm() {
           type="text"
           id="price"
           name='price'
-          value={price}
-          onChange={(e) => setPrice(e.target.value)}
+
         />
       </div>
 
@@ -46,8 +36,7 @@ export function AddProductForm() {
           type="text"
           id="description"
           name='description'
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
+
         />
       </div>
 
@@ -57,8 +46,7 @@ export function AddProductForm() {
           type="text"
           id="stock"
           name='stock'
-          value={stock}
-          onChange={(e) => setStock(e.target.value)}
+
         />
       </div>
 
@@ -68,8 +56,6 @@ export function AddProductForm() {
           type="checkbox"
           id="isAvailable"
           name="isAvailable"
-          checked={isAvailable}
-          onChange={() => setIsAvailable(prev => !prev)}
         />
       </div>
       {

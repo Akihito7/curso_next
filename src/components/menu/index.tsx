@@ -1,7 +1,22 @@
+'use client'
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
+
+export function Search(){
+  const search = useSearchParams().get("search");
+  const neymar = useSearchParams().get("neymar")
+  return (
+    <>
+
+    <p>Search : {search}</p>
+    <p>Neymar : {neymar}</p>
+    </>
+  )
+}
 
 export function Menu() {
   return (
+    <>
     <ul>
       <li>
         <Link href="/"
@@ -9,7 +24,10 @@ export function Menu() {
           Home
         </Link>
       </li>
+
     </ul>
+    <Search />
+    </>
   )
 }
 
