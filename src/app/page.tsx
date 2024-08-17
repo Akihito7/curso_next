@@ -1,5 +1,5 @@
 import { GetCookies } from "@/components/getCookies";
-import { getCookies } from "./actions/cookies";
+import { getCookies } from "./server-actions/cookies";
 
 export default async function Home() {
   const cookies = await getCookies("token"); 

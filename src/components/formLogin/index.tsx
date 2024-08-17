@@ -1,8 +1,8 @@
 'use client'
 import { useState } from "react"
 import { useRouter } from "next/navigation";
-import { login } from "@/app/actions/login";
-import { setCookies } from "@/app/actions/cookies";
+import { login } from "@/app/server-actions/login";
+import { setCookies } from "@/app/server-actions/cookies";
 
 export function FormLogin() {
 

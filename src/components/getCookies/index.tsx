@@ -1,5 +1,5 @@
 'use client'
-import { getCookies as serverGetCookies } from "@/app/actions/cookies"
+import { getCookies as serverGetCookies } from "@/app/server-actions/cookies"
 import { useState } from "react";
 
 export function GetCookies() {
