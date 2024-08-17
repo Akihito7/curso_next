@@ -3,32 +3,21 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
-type AddProductTypes = {
-  name: string;
-  price: string;
-  description: string;
-  stock: string;
-  isAvailable: 0 | 1
-}
-export async function addProduct({
-  name,
-  price,
-  description,
-  stock,
-  isAvailable
-}: AddProductTypes) {
+export async function addProduct(formData: FormData) {
+  console.log("enviei")
+  const product = {
+    nome: formData.get("name"),
+    preco: Number(formData.get("price")),
+    descricao: formData.get("description"),
+    estoque: Number(formData.get("stock")),
+    importado: formData.get("isAvailable") ? 1 : 0
+  }
   const response = await fetch("https://api.origamid.online/produtos", {
     method: 'POST',
     headers: {
       'Content-Type': "application/json"
     },
-    body: JSON.stringify({
-      nome: name,
-      preco: Number(price),
-      descricao: description,
-      estoque: Number(stock),
-      importado: isAvailable
-    })
+    body: JSON.stringify(product)
   })
   revalidatePath("/products")
   redirect("/products")

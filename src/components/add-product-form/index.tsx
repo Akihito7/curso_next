@@ -3,6 +3,7 @@
 import { addProduct, revalidatePathActions } from '@/app/server-actions/productsActions';
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useFormStatus } from 'react-dom';
 
 export function AddProductForm() {
   const [name, setName] = useState('');
@@ -10,32 +11,16 @@ export function AddProductForm() {
   const [description, setDescription] = useState('');
   const [stock, setStock] = useState('');
   const [isAvailable, setIsAvailable] = useState(false);
-  const router = useRouter()
 
-
-  const handleSubmit = async (event: React.FormEvent) => {
-    event.preventDefault();
-
-    if(!name || !price || !description || !stock) return alert("preencha todos os campos porfavor")
-    const imported = isAvailable ? 1 : 0
-
-    await addProduct({
-      name,
-      price,
-      description,
-      stock,
-      isAvailable : imported
-    })
-
-  };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form action={addProduct}>
       <div className="containerInput">
         <label htmlFor="name">Name</label>
         <input
           type="text"
           id="name"
+          name='name'
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
@@ -45,6 +30,7 @@ export function AddProductForm() {
         <input
           type="text"
           id="price"
+          name='price'
           value={price}
           onChange={(e) => setPrice(e.target.value)}
         />
@@ -55,6 +41,7 @@ export function AddProductForm() {
         <input
           type="text"
           id="description"
+          name='description'
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
@@ -65,6 +52,7 @@ export function AddProductForm() {
         <input
           type="text"
           id="stock"
+          name='stock'
           value={stock}
           onChange={(e) => setStock(e.target.value)}
         />
@@ -75,12 +63,23 @@ export function AddProductForm() {
         <input
           type="checkbox"
           id="isAvailable"
+          name="isAvailable"
           checked={isAvailable}
           onChange={() => setIsAvailable(prev => !prev)}
         />
       </div>
 
-      <button type="submit">Add</button>
+      <Button />
     </form>
   );
+}
+
+function Button() {
+
+  const status = useFormStatus();
+  return (
+    <button disabled={status.pending}>
+      Add
+    </button>
+  )
 }
