@@ -9,39 +9,6 @@ export function Menu() {
           Home
         </Link>
       </li>
-      <li>
-        <Link
-          href="/about#scrollHere"
-          prefetch={true}
-        /* scroll={false} */
-        >
-          About
-        </Link>
-      </li>
-
-      <li>
-        <Link href="/imc">
-          IMC
-        </Link>
-      </li>
-
-      <li>
-        <Link href="/products">
-          Products
-        </Link>
-      </li>
-
-      <li>
-        <Link href="/courses">Cursos</Link>
-      </li>
-
-      <li>
-        <Link href="/actions">Ações</Link>
-      </li>
-
-      <li>
-        <Link href="/login">Login</Link>
-      </li>
     </ul>
   )
 }
