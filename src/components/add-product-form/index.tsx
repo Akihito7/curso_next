@@ -1,9 +1,8 @@
 'use client';
 
-import { addProduct, revalidatePathActions } from '@/app/server-actions/productsActions';
+import { addProduct } from '@/app/server-actions/productsActions';
 import React, { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { useFormStatus } from 'react-dom';
+import { useFormState, useFormStatus } from 'react-dom';
 
 export function AddProductForm() {
   const [name, setName] = useState('');
@@ -11,10 +10,15 @@ export function AddProductForm() {
   const [description, setDescription] = useState('');
   const [stock, setStock] = useState('');
   const [isAvailable, setIsAvailable] = useState(false);
+  const [state, formAction] = useFormState(addProduct, {
+    errors :[]
+  })
 
+  console.log(state)
 
   return (
-    <form action={addProduct}>
+
+    <form action={formAction}>
       <div className="containerInput">
         <label htmlFor="name">Name</label>
         <input
@@ -68,7 +72,18 @@ export function AddProductForm() {
           onChange={() => setIsAvailable(prev => !prev)}
         />
       </div>
-
+      {
+        state.errors.length > 0 && state.errors.map((e, i) => (
+          <p
+            key={i}
+            style={{
+              color : "red"
+            }}
+          >
+            {e}
+          </p>
+        ))
+      }
       <Button />
     </form>
   );
