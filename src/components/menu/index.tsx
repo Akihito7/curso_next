@@ -6,8 +6,7 @@ export function Search(){
   const search = useSearchParams().get("search");
   const neymar = useSearchParams().get("neymar")
   return (
-    <>
-
+    <>  
     <p>Search : {search}</p>
     <p>Neymar : {neymar}</p>
     </>
@@ -25,6 +24,12 @@ export function Menu() {
         </Link>
       </li>
 
+      <li>
+        <Link href="/animals"
+        >
+          Animals
+        </Link>
+      </li>
     </ul>
     <Search />
     </>
